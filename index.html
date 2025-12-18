@@ -85,6 +85,109 @@
             challenge: 60 * 60
         };
 
+        const ESSAY_THEMES = [
+            "Desafios da educação inclusiva no Brasil contemporâneo.",
+            "O impacto das fake news na democracia brasileira.",
+            "Caminhos para combater a intolerância religiosa.",
+            "O estigma associado às doenças mentais na sociedade.",
+            "Manipulação do comportamento do usuário pelo controle de dados.",
+            "Democratização do acesso ao cinema no Brasil.",
+            "Invisibilidade e registro civil: garantia de acesso à cidadania.",
+            "Valorização de comunidades e povos tradicionais.",
+            "Desafios do trabalho de cuidado realizado pela mulher.",
+            "Segurança alimentar e combate à fome no Brasil.",
+            "O papel da tecnologia na educação básica.",
+            "Aumento da ansiedade entre jovens no século XXI.",
+            "Perspectivas sobre a mobilidade urbana sustentável.",
+            "A importância da doação de órgãos para a saúde pública.",
+            "Desafios para o controle da obesidade infantil.",
+            "Impactos do descarte incorreto de resíduos sólidos.",
+            "A questão da violência doméstica contra a mulher.",
+            "Inclusão digital de idosos na era da informação.",
+            "Desafios da adoção tardia no Brasil.",
+            "O combate ao preconceito linguístico.",
+            "Preservação do patrimônio histórico-cultural brasileiro.",
+            "A exploração do trabalho infantil na atualidade.",
+            "Efeitos da polarização política nas relações sociais.",
+            "O desafio da alfabetização funcional no Brasil.",
+            "Caminhos para evitar o cyberbullying nas escolas.",
+            "O direito à moradia e a ocupação de espaços urbanos.",
+            "Consequências do consumo desenfreado para o meio ambiente.",
+            "O papel do esporte na inclusão social.",
+            "Evasão escolar e o futuro da juventude brasileira.",
+            "Desafios para a integração de refugiados na sociedade.",
+            "Os limites da liberdade de expressão na internet.",
+            "Importância da vacinação para o controle de doenças.",
+            "A influência das redes sociais na autoimagem juvenil.",
+            "Combate à gordofobia e ao culto ao corpo padrão.",
+            "O uso medicinal da cannabis no Brasil.",
+            "Sustentabilidade no agronegócio brasileiro.",
+            "Os desafios do sistema carcerário nacional.",
+            "Caminhos para a valorização do professor.",
+            "O impacto do lixo eletrônico na saúde ambiental.",
+            "A solidão e o isolamento na vida urbana moderna.",
+            "Perspectivas sobre o sistema de cotas nas universidades.",
+            "O desafio do empreendedorismo feminino no Brasil.",
+            "A questão dos maus-tratos aos animais.",
+            "A importância da educação financeira nas escolas.",
+            "A crise hídrica e a gestão dos recursos naturais.",
+            "O impacto do turismo predatório em áreas protegidas.",
+            "Desafios para a erradicação do trabalho análogo à escravidão.",
+            "A cultura do cancelamento no ambiente digital.",
+            "O acesso à saúde pública em regiões remotas.",
+            "Desafios para a inserção de jovens no mercado de trabalho.",
+            "O papel da família na formação educacional.",
+            "Aumento do consumo de álcool entre adolescentes.",
+            "O impacto da inteligência artificial na economia.",
+            "A importância do saneamento básico para a saúde.",
+            "Combate ao racismo estrutural na sociedade brasileira.",
+            "O desafio da segurança cibernética pessoal.",
+            "Caminhos para o desenvolvimento sustentável da Amazônia.",
+            "A valorização da cultura indígena no Brasil.",
+            "Desafios da diversidade no ambiente corporativo.",
+            "A questão da automedicação e seus riscos.",
+            "O impacto da publicidade infantil no comportamento familiar.",
+            "A importância do voto consciente para o país.",
+            "Desafios para a convivência com a seca no Nordeste.",
+            "O impacto da evasão de cérebros na ciência brasileira.",
+            "A importância da preservação das línguas nativas.",
+            "O desafio de lidar com o envelhecimento populacional.",
+            "A influência da música na formação de identidade.",
+            "O papel das ONGs na assistência social.",
+            "Caminhos para a redução da desigualdade social.",
+            "O impacto da inteligência artificial na arte.",
+            "A questão da saúde mental dos profissionais da saúde.",
+            "Desafios para o controle de agrotóxicos nos alimentos.",
+            "A importância da representatividade na mídia.",
+            "O impacto da tecnologia 5G no Brasil.",
+            "Combate à pirataria e proteção intelectual.",
+            "A questão do abandono de idosos pela família.",
+            "Desafios da mobilidade para pessoas com deficiência.",
+            "A importância dos museus na memória coletiva.",
+            "O impacto do desemprego na estrutura familiar.",
+            "Caminhos para fomentar a leitura entre crianças.",
+            "O perigo das dietas milagrosas sem acompanhamento.",
+            "A importância da ética na ciência contemporânea.",
+            "Desafios da segurança pública nas grandes capitais.",
+            "O impacto das plataformas de streaming na cultura.",
+            "A questão da violência nos estádios de futebol.",
+            "Desafios para o uso ético da biotecnologia.",
+            "A importância do lazer para a qualidade de vida.",
+            "O combate à violência obstétrica no Brasil.",
+            "O papel das cidades inteligentes no futuro urbano.",
+            "Desafios para a integração do MERCOSUL.",
+            "O impacto da uberização do trabalho.",
+            "A importância do voluntariado para a sociedade.",
+            "Combate à desinformação sobre o meio ambiente.",
+            "O desafio da proteção de dados pessoais.",
+            "A influência dos influenciadores digitais no consumo.",
+            "Caminhos para a desburocratização da justiça.",
+            "O impacto da revolução verde no Brasil.",
+            "A importância da educação artística na escola.",
+            "Desafios para a paz global no século XXI.",
+            "O papel do Brasil no cenário internacional atual."
+        ];
+
         // --- Componente de Cronômetro ---
         function PomodoroTimer({ onTimeUp }) {
             const [mode, setMode] = useState('work');
@@ -116,18 +219,18 @@
 
             return html`
                 <div class="glass p-6 rounded-3xl shadow-soft flex flex-col items-center gap-6">
-                    <div class="flex bg-slate-100 p-1 rounded-xl w-full">
+                    <div class="flex bg-slate-100 p-1 rounded-xl w-full overflow-x-auto">
                         ${['work', 'short', 'long', 'challenge'].map(m => html`
                             <button 
                                 key=${m}
                                 onClick=${() => changeMode(m)}
-                                class="flex-1 py-2 rounded-lg text-[10px] font-bold uppercase tracking-wider transition-all ${mode === m ? 'bg-white text-indigo-600 shadow-sm' : 'text-slate-500 hover:text-slate-700'}"
+                                class="flex-1 py-2 px-2 rounded-lg text-[9px] font-bold uppercase tracking-wider transition-all whitespace-nowrap ${mode === m ? 'bg-white text-indigo-600 shadow-sm' : 'text-slate-500 hover:text-slate-700'}"
                             >
-                                ${m === 'work' ? 'Pomo' : m === 'short' ? 'Curta' : m === 'long' ? 'Longa' : 'Redação'}
+                                ${m === 'work' ? 'Pomo' : m === 'short' ? 'Curta' : m === 'long' ? 'Longa' : 'Prova'}
                             </button>
                         `)}
                     </div>
-                    <div class="text-6xl font-black text-slate-900 tabular-nums">${format(seconds)}</div>
+                    <div class="text-6xl font-black text-slate-900 tabular-nums tracking-tighter">${format(seconds)}</div>
                     <div class="flex gap-2 w-full">
                         <button 
                             onClick=${() => setIsActive(!isActive)}
@@ -147,6 +250,7 @@
         function App() {
             const [tab, setTab] = useState('editor');
             const [essay, setEssay] = useState({ title: '', content: '', notes: '' });
+            const [currentTheme, setCurrentTheme] = useState('');
             const [history, setHistory] = useState([]);
             const [feedback, setFeedback] = useState(null);
             const [isAnalyzing, setIsAnalyzing] = useState(false);
@@ -171,6 +275,12 @@
                 setTimeout(() => setToast(''), 3000);
             };
 
+            const drawTheme = () => {
+                const idx = Math.floor(Math.random() * ESSAY_THEMES.length);
+                setCurrentTheme(ESSAY_THEMES[idx]);
+                showMsg("Novo tema sorteado!");
+            };
+
             const analyze = async () => {
                 if (essay.content.length < 300) return alert("Escreva ao menos 300 caracteres.");
                 setIsAnalyzing(true);
@@ -178,7 +288,7 @@
                     const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
                     const response = await ai.models.generateContent({
                         model: 'gemini-3-flash-preview',
-                        contents: `Analise como corretor oficial do ENEM a redação: "${essay.title}". Texto: ${essay.content}`,
+                        contents: `Analise como corretor oficial do ENEM a redação com o tema: "${currentTheme || 'Livre'}" e título: "${essay.title}". Texto: ${essay.content}`,
                         config: {
                             responseMimeType: "application/json",
                             responseSchema: {
@@ -204,13 +314,13 @@
 
             const save = () => {
                 if (!essay.content.trim()) return alert("Nada para salvar.");
-                const entry = { ...essay, id: Date.now(), date: new Date().toLocaleString(), feedback };
+                const entry = { ...essay, theme: currentTheme, id: Date.now(), date: new Date().toLocaleString(), feedback };
                 setHistory([entry, ...history]);
                 showMsg("Redação salva no histórico!");
             };
 
             const download = () => {
-                const blob = new Blob([`TÍTULO: ${essay.title}\n\n${essay.content}`], { type: 'text/plain' });
+                const blob = new Blob([`TEMA: ${currentTheme}\nTÍTULO: ${essay.title}\n\n${essay.content}`], { type: 'text/plain' });
                 const url = URL.createObjectURL(blob);
                 const a = document.createElement('a');
                 a.href = url;
@@ -224,7 +334,7 @@
                     <header class="glass sticky top-0 z-50 px-6 py-4 shadow-sm">
                         <div class="max-w-7xl mx-auto flex items-center justify-between">
                             <div class="flex items-center gap-2">
-                                <div class="w-10 h-10 bg-indigo-600 rounded-xl flex items-center justify-center text-white font-bold">W</div>
+                                <div class="w-10 h-10 bg-indigo-600 rounded-xl flex items-center justify-center text-white font-bold shadow-lg shadow-indigo-100">W</div>
                                 <h1 class="font-black text-xl tracking-tighter hidden sm:block">WriteMaster <span class="text-indigo-600">AI</span></h1>
                             </div>
                             
@@ -234,14 +344,14 @@
                                         onClick=${() => setTab(t)}
                                         class="px-4 py-2 rounded-xl text-xs font-bold transition-all ${tab === t ? 'bg-white text-indigo-600 shadow-sm' : 'text-slate-500'}"
                                     >
-                                        ${t.toUpperCase()}
+                                        ${t === 'editor' ? 'ESCRIBIR' : t === 'history' ? 'HISTÓRICO' : 'GUIA'}
                                     </button>
                                 `)}
                             </nav>
 
                             <div class="flex gap-2">
-                                <button onClick=${save} class="hidden sm:flex items-center gap-2 bg-emerald-600 text-white px-4 py-2 rounded-xl text-xs font-bold">Salvar</button>
-                                <button onClick=${analyze} class="hidden sm:flex items-center gap-2 bg-indigo-600 text-white px-4 py-2 rounded-xl text-xs font-bold">Analisar</button>
+                                <button onClick=${save} class="hidden sm:flex items-center gap-2 bg-emerald-600 text-white px-4 py-2 rounded-xl text-xs font-bold hover:bg-emerald-700 transition-colors">Salvar</button>
+                                <button onClick=${analyze} class="hidden sm:flex items-center gap-2 bg-indigo-600 text-white px-4 py-2 rounded-xl text-xs font-bold hover:bg-indigo-700 transition-colors">Analisar</button>
                             </div>
                         </div>
                     </header>
@@ -250,59 +360,81 @@
                         ${tab === 'editor' && html`
                             <div class="grid grid-cols-1 xl:grid-cols-4 gap-8 animate-fade-in">
                                 <div class="xl:col-span-3 space-y-6">
+                                    
+                                    <!-- Sorteio de Tema -->
+                                    <div class="bg-indigo-50 border border-indigo-100 p-6 rounded-3xl flex flex-col md:flex-row items-center gap-4">
+                                        <div class="flex-1">
+                                            <span class="text-[10px] font-black text-indigo-400 uppercase tracking-[0.2em] mb-1 block">Tema Proposto</span>
+                                            <p class="text-indigo-900 font-bold leading-tight">${currentTheme || 'Escolha um tema para começar seu treinamento...'}</p>
+                                        </div>
+                                        <button onClick=${drawTheme} class="bg-white text-indigo-600 px-6 py-3 rounded-2xl font-black text-xs shadow-sm hover:shadow-md transition-all whitespace-nowrap">SORTEAR TEMA</button>
+                                    </div>
+
                                     <div class="glass p-2 rounded-2xl">
                                         <input 
-                                            class="w-full text-2xl font-bold p-4 bg-transparent outline-none text-slate-900" 
-                                            placeholder="Título da Redação..."
+                                            class="w-full text-2xl font-bold p-4 bg-transparent outline-none text-slate-900 placeholder:text-slate-200" 
+                                            placeholder="Dê um título à sua redação..."
                                             value=${essay.title}
                                             onInput=${e => setEssay({...essay, title: e.target.value})}
                                         />
                                     </div>
-                                    <div class="relative">
+
+                                    <div class="relative group">
                                         <textarea 
-                                            class="serif w-full h-[500px] p-8 glass rounded-3xl outline-none text-lg leading-relaxed text-slate-800 shadow-inner resize-none"
-                                            placeholder="Comece sua escrita..."
+                                            class="serif w-full h-[600px] p-10 glass rounded-[2.5rem] outline-none text-lg leading-relaxed text-slate-800 shadow-inner resize-none border-indigo-50 group-hover:border-indigo-100 transition-colors"
+                                            placeholder="Comece sua escrita respeitando as 30 linhas do ENEM..."
                                             value=${essay.content}
                                             onInput=${e => setEssay({...essay, content: e.target.value})}
                                         ></textarea>
-                                        <div class="absolute bottom-4 right-6 text-[10px] font-bold text-slate-400 bg-white/80 px-3 py-1 rounded-full">
-                                            ${essay.content.length} caracteres
+                                        <div class="absolute bottom-6 right-8 text-[11px] font-black text-slate-400 bg-white/90 backdrop-blur-sm px-4 py-2 rounded-full border border-slate-100 shadow-sm flex gap-4">
+                                            <span>${essay.content.trim() ? essay.content.trim().split(/\s+/).length : 0} palavras</span>
+                                            <span class="opacity-30">|</span>
+                                            <span>${essay.content.length} caracteres</span>
                                         </div>
                                     </div>
 
                                     <div class="flex flex-wrap gap-4 bg-white p-6 rounded-3xl border border-slate-200 shadow-sm">
-                                        <button onClick=${save} class="px-8 py-4 bg-emerald-600 text-white rounded-2xl font-black text-sm tracking-widest shadow-lg shadow-emerald-100 uppercase">Salvar no Histórico</button>
-                                        <button onClick=${download} class="px-6 py-4 bg-slate-100 text-slate-600 rounded-2xl font-bold text-sm">Baixar .TXT</button>
-                                        <button onClick=${() => setEssay({title:'', content:'', notes:''})} class="px-6 py-4 text-rose-500 font-bold ml-auto">Limpar</button>
+                                        <button onClick=${save} class="px-10 py-5 bg-emerald-600 text-white rounded-2xl font-black text-sm tracking-widest shadow-xl shadow-emerald-100 uppercase transform active:scale-95 transition-all">Salvar no Histórico</button>
+                                        <button onClick=${download} class="px-8 py-5 bg-slate-100 text-slate-600 rounded-2xl font-bold text-sm hover:bg-slate-200 transition-colors">Baixar .TXT</button>
+                                        <button onClick=${() => { if(confirm("Limpar tudo?")) setEssay({title:'', content:'', notes:''}); }} class="px-6 py-5 text-rose-500 font-bold ml-auto hover:text-rose-600">Limpar</button>
                                     </div>
 
                                     ${feedback && html`
-                                        <div class="glass p-8 rounded-[2rem] space-y-8 animate-fade-in shadow-xl">
-                                            <div class="flex justify-between items-end border-b pb-6">
+                                        <div class="glass p-8 rounded-[3rem] space-y-8 animate-fade-in shadow-2xl border-indigo-100">
+                                            <div class="flex flex-col md:flex-row justify-between items-center gap-6 border-b border-indigo-50 pb-8">
                                                 <div>
-                                                    <h2 class="text-5xl font-black text-indigo-600">${feedback.score}</h2>
-                                                    <p class="text-slate-500 font-bold uppercase text-[10px] tracking-widest">Nota Estimada ENEM</p>
+                                                    <h2 class="text-6xl font-black text-indigo-600">${feedback.score}</h2>
+                                                    <p class="text-slate-400 font-black uppercase text-[11px] tracking-[0.3em] mt-1">Pontuação Final ENEM</p>
+                                                </div>
+                                                <div class="text-center md:text-right">
+                                                    <p class="text-slate-600 font-medium max-w-md">${feedback.general}</p>
                                                 </div>
                                             </div>
-                                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+
+                                            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                                                 ${feedback.competencies.map(c => html`
-                                                    <div class="p-4 bg-white rounded-2xl border border-slate-100">
-                                                        <div class="flex justify-between font-bold text-[10px] text-indigo-500 mb-2">
-                                                            <span>${c.label}</span>
-                                                            <span class="bg-indigo-50 px-2 py-0.5 rounded-full">${c.score}</span>
+                                                    <div class="p-6 bg-white rounded-3xl border border-slate-100 shadow-sm hover:shadow-md transition-shadow">
+                                                        <div class="flex justify-between items-center mb-3">
+                                                            <span class="text-[10px] font-black text-indigo-400 uppercase tracking-widest">${c.label}</span>
+                                                            <span class="bg-indigo-600 text-white px-3 py-1 rounded-full text-xs font-black">${c.score}</span>
                                                         </div>
-                                                        <p class="text-xs text-slate-600 italic">"${c.comment}"</p>
+                                                        <p class="text-xs text-slate-600 leading-relaxed italic">"${c.comment}"</p>
                                                     </div>
                                                 `)}
                                             </div>
-                                            <div class="space-y-4">
-                                                <h3 class="font-black text-slate-900 text-sm uppercase tracking-widest">Análise Geral</h3>
-                                                <p class="bg-white/50 p-6 rounded-2xl text-slate-700 text-sm leading-relaxed">${feedback.general}</p>
-                                            </div>
-                                            <div class="bg-slate-900 text-white p-8 rounded-3xl">
-                                                <h3 class="font-bold text-indigo-400 mb-4">Pontos de Melhoria</h3>
-                                                <ul class="text-xs space-y-2 opacity-80">
-                                                    ${feedback.tips.map(t => html`<li>• ${t}</li>`)}
+
+                                            <div class="bg-slate-900 text-white p-10 rounded-[2.5rem] shadow-2xl relative overflow-hidden">
+                                                <div class="absolute top-0 right-0 p-8 opacity-10">
+                                                    <svg class="w-32 h-32" fill="currentColor" viewBox="0 0 20 20"><path d="M11 3a1 1 0 10-2 0v1a1 1 0 102 0V3zM15.657 5.757a1 1 0 00-1.414-1.414l-.707.707a1 1 0 001.414 1.414l.707-.707zM18 10a1 1 0 01-1 1h-1a1 1 0 110-2h1a1 1 0 011 1zM5.05 6.464A1 1 0 106.464 5.05l-.707-.707a1 1 0 00-1.414 1.414l.707.707zM5 10a1 1 0 01-1 1H3a1 1 0 110-2h1a1 1 0 011 1zM8 16v-1a1 1 0 112 0v1a1 1 0 11-2 0zM13.536 14.95a1 1 0 011.414 0l.707.707a1 1 0 11-1.414 1.414l-.707-.707a1 1 0 010-1.414zM15.657 14.243a1 1 0 00-1.414 1.414l.707.707a1 1 0 001.414-1.414l-.707-.707z"></path></svg>
+                                                </div>
+                                                <h3 class="font-black text-indigo-400 mb-6 uppercase tracking-widest text-sm">Plano de Melhoria</h3>
+                                                <ul class="space-y-4">
+                                                    ${feedback.tips.map(t => html`
+                                                        <li class="flex gap-4 items-start">
+                                                            <span class="w-5 h-5 bg-indigo-500/20 rounded-full flex items-center justify-center flex-shrink-0 text-indigo-400 text-xs font-black">✓</span>
+                                                            <p class="text-sm text-slate-300 leading-relaxed">${t}</p>
+                                                        </li>
+                                                    `)}
                                                 </ul>
                                             </div>
                                         </div>
@@ -310,23 +442,26 @@
                                 </div>
 
                                 <div class="xl:col-span-1 space-y-6">
-                                    <${PomodoroTimer} onTimeUp=${() => alert("Tempo de Redação encerrado!")} />
-                                    <div class="glass p-6 rounded-3xl space-y-4">
-                                        <h4 class="font-bold text-sm text-slate-900 border-b pb-2">Anotações Rápida</h4>
+                                    <${PomodoroTimer} onTimeUp=${() => alert("Hora de encerrar a escrita!")} />
+                                    
+                                    <div class="glass p-6 rounded-3xl space-y-4 shadow-sm border-slate-200">
+                                        <h4 class="font-black text-xs text-slate-900 uppercase tracking-widest border-b border-slate-100 pb-3">Anotações Rápida</h4>
                                         <textarea 
-                                            class="w-full h-40 bg-transparent text-xs text-slate-600 outline-none resize-none leading-relaxed"
-                                            placeholder="Ideias, citações..."
+                                            class="w-full h-48 bg-indigo-50/30 p-4 rounded-2xl text-xs text-indigo-900 outline-none resize-none leading-relaxed placeholder:text-indigo-200"
+                                            placeholder="Estruture seus argumentos aqui..."
                                             value=${essay.notes}
                                             onInput=${e => setEssay({...essay, notes: e.target.value})}
                                         ></textarea>
                                     </div>
-                                    <div class="bg-indigo-900 p-6 rounded-3xl text-white">
-                                        <h4 class="font-bold text-xs mb-4">Checklist Final</h4>
-                                        <ul class="text-[10px] space-y-2 opacity-70">
-                                            <li><input type="checkbox"/> Título pertinente</li>
-                                            <li><input type="checkbox"/> 2 a 3 repertórios</li>
-                                            <li><input type="checkbox"/> 5 elementos na proposta</li>
-                                            <li><input type="checkbox"/> Conectivos em todos parágrafos</li>
+
+                                    <div class="bg-indigo-900 p-8 rounded-[2rem] text-white shadow-xl shadow-indigo-100">
+                                        <h4 class="font-black text-xs mb-6 uppercase tracking-[0.2em] text-indigo-300">Checklist ENEM</h4>
+                                        <ul class="text-[11px] space-y-4">
+                                            <li class="flex items-center gap-3 opacity-80"><input type="checkbox" class="w-4 h-4 rounded-md accent-indigo-500"/> Repertório Pertinente</li>
+                                            <li class="flex items-center gap-3 opacity-80"><input type="checkbox" class="w-4 h-4 rounded-md accent-indigo-500"/> Tese com 2 Causas</li>
+                                            <li class="flex items-center gap-3 opacity-80"><input type="checkbox" class="w-4 h-4 rounded-md accent-indigo-500"/> Conectivos Variados</li>
+                                            <li class="flex items-center gap-3 opacity-80"><input type="checkbox" class="w-4 h-4 rounded-md accent-indigo-500"/> 5 Elementos na PI</li>
+                                            <li class="flex items-center gap-3 opacity-80"><input type="checkbox" class="w-4 h-4 rounded-md accent-indigo-500"/> Coesão e Gramática</li>
                                         </ul>
                                     </div>
                                 </div>
@@ -334,19 +469,22 @@
                         `}
 
                         ${tab === 'history' && html`
-                            <div class="animate-fade-in max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-4">
-                                ${history.length === 0 ? html`<p class="col-span-full text-center py-20 text-slate-400">Nenhum rascunho salvo ainda.</p>` : 
+                            <div class="animate-fade-in max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                                ${history.length === 0 ? html`<div class="col-span-full py-32 text-center opacity-40 font-black uppercase tracking-widest">Nenhum rascunho salvo no histórico.</div>` : 
                                 history.map(h => html`
-                                    <div key=${h.id} class="bg-white p-6 rounded-3xl border border-slate-200 shadow-sm hover:border-indigo-500 transition-all cursor-pointer">
-                                        <div class="flex justify-between items-start mb-1">
-                                            <h3 class="font-bold text-slate-900 truncate flex-1">${h.title || 'Sem Título'}</h3>
-                                            ${h.feedback && html`<span class="bg-indigo-600 text-white text-[10px] font-bold px-2 py-1 rounded-lg">${h.feedback.score}</span>`}
+                                    <div key=${h.id} class="bg-white p-8 rounded-[2rem] border border-slate-200 shadow-sm hover:shadow-xl hover:border-indigo-200 transition-all cursor-pointer group flex flex-col">
+                                        <div class="flex justify-between items-start mb-4">
+                                            <div class="flex-1 min-w-0">
+                                                <h3 class="font-black text-slate-900 truncate group-hover:text-indigo-600 transition-colors">${h.title || 'Redação sem Título'}</h3>
+                                                <p class="text-[10px] text-slate-400 font-black uppercase tracking-widest mt-1">${h.date}</p>
+                                            </div>
+                                            ${h.feedback && html`<span class="bg-indigo-600 text-white text-[11px] font-black px-3 py-1 rounded-full ml-2">${h.feedback.score}</span>`}
                                         </div>
-                                        <p class="text-[10px] text-slate-400 font-bold uppercase mb-4">${h.date}</p>
-                                        <p class="serif text-xs text-slate-500 line-clamp-3 mb-4 leading-relaxed">${h.content}</p>
-                                        <div class="flex gap-4">
-                                            <button onClick=${() => { setEssay(h); setTab('editor'); setFeedback(h.feedback); }} class="text-xs font-bold text-indigo-600">Editar</button>
-                                            <button onClick=${() => setHistory(history.filter(x => x.id !== h.id))} class="text-xs font-bold text-rose-400">Excluir</button>
+                                        <p class="text-[10px] text-indigo-400 font-bold mb-3 italic">Tema: ${h.theme || 'Não definido'}</p>
+                                        <p class="serif text-xs text-slate-500 line-clamp-4 mb-6 leading-relaxed flex-1">${h.content}</p>
+                                        <div class="flex gap-4 border-t border-slate-50 pt-4">
+                                            <button onClick=${() => { setEssay(h); setCurrentTheme(h.theme || ''); setTab('editor'); setFeedback(h.feedback); window.scrollTo(0,0); }} class="text-xs font-black text-indigo-600 uppercase tracking-widest hover:translate-x-1 transition-transform">Abrir Editor</button>
+                                            <button onClick=${() => setHistory(history.filter(x => x.id !== h.id))} class="text-xs font-black text-rose-300 uppercase tracking-widest ml-auto hover:text-rose-500">Apagar</button>
                                         </div>
                                     </div>
                                 `)}
@@ -354,29 +492,41 @@
                         `}
 
                         ${tab === 'guide' && html`
-                            <div class="animate-fade-in max-w-3xl mx-auto space-y-8 pb-20">
-                                <section class="glass p-8 rounded-[2rem] border-slate-200 shadow-sm">
-                                    <h2 class="text-2xl font-black text-slate-900 mb-6">Guia Nota 1000</h2>
-                                    <div class="space-y-6 text-sm text-slate-600 leading-relaxed">
-                                        <div class="flex gap-4">
-                                            <div class="w-8 h-8 rounded-full bg-indigo-100 text-indigo-600 flex items-center justify-center font-bold flex-shrink-0">1</div>
-                                            <div>
-                                                <h4 class="font-bold text-slate-900">Introdução</h4>
-                                                <p>Apresente o tema através de um repertório legitimado e defina claramente sua tese com dois argumentos.</p>
+                            <div class="animate-fade-in max-w-4xl mx-auto space-y-10 pb-32">
+                                <section class="glass p-12 rounded-[3rem] border-slate-200 shadow-soft">
+                                    <h2 class="text-3xl font-black text-slate-900 mb-8 tracking-tighter uppercase">Anatomia da Nota 1000</h2>
+                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                                        <div class="space-y-8">
+                                            <div class="flex gap-6">
+                                                <div class="w-10 h-10 rounded-2xl bg-indigo-600 text-white flex items-center justify-center font-black flex-shrink-0 shadow-lg shadow-indigo-100">1</div>
+                                                <div>
+                                                    <h4 class="font-black text-slate-900 uppercase text-xs tracking-widest mb-2">Introdução (7-8 linhas)</h4>
+                                                    <p class="text-sm text-slate-600 leading-relaxed">Contextualização com repertório (história, literatura, filme) + Apresentação do tema + Tese clara com dois problemas a serem discutidos.</p>
+                                                </div>
+                                            </div>
+                                            <div class="flex gap-6">
+                                                <div class="w-10 h-10 rounded-2xl bg-indigo-600 text-white flex items-center justify-center font-black flex-shrink-0 shadow-lg shadow-indigo-100">2</div>
+                                                <div>
+                                                    <h4 class="font-black text-slate-900 uppercase text-xs tracking-widest mb-2">Desenvolvimento (8-9 linhas cada)</h4>
+                                                    <p class="text-sm text-slate-600 leading-relaxed">Início com conectivo + Tópico frasal + Repertório Legitimado + Argumentação profunda ligando o repertório à tese + Conclusão do parágrafo.</p>
+                                                </div>
+                                            </div>
+                                            <div class="flex gap-6">
+                                                <div class="w-10 h-10 rounded-2xl bg-indigo-600 text-white flex items-center justify-center font-black flex-shrink-0 shadow-lg shadow-indigo-100">3</div>
+                                                <div>
+                                                    <h4 class="font-black text-slate-900 uppercase text-xs tracking-widest mb-2">Conclusão (7-8 linhas)</h4>
+                                                    <p class="text-sm text-slate-600 leading-relaxed">Conectivo conclusivo + Proposta de Intervenção com Agente, Ação, Meio, Efeito e um Detalhamento completo.</p>
+                                                </div>
                                             </div>
                                         </div>
-                                        <div class="flex gap-4">
-                                            <div class="w-8 h-8 rounded-full bg-indigo-100 text-indigo-600 flex items-center justify-center font-bold flex-shrink-0">2</div>
-                                            <div>
-                                                <h4 class="font-bold text-slate-900">Desenvolvimento</h4>
-                                                <p>Utilize um parágrafo para cada argumento. Estrutura: Tópico frasal + Repertório + Explicação + Conclusão do parágrafo.</p>
-                                            </div>
-                                        </div>
-                                        <div class="flex gap-4">
-                                            <div class="w-8 h-8 rounded-full bg-indigo-100 text-indigo-600 flex items-center justify-center font-bold flex-shrink-0">3</div>
-                                            <div>
-                                                <h4 class="font-bold text-slate-900">Conclusão</h4>
-                                                <p>Proposta de intervenção completa: Agente, Ação, Meio/Modo, Efeito e Detalhamento de um desses itens.</p>
+                                        <div class="bg-slate-900 p-10 rounded-[2.5rem] text-white space-y-6">
+                                            <h4 class="font-black text-indigo-400 uppercase tracking-widest text-xs">As 5 Competências</h4>
+                                            <div class="space-y-4 opacity-80">
+                                                <div class="text-[11px]"><strong class="text-indigo-300">C1:</strong> Domínio da norma culta da língua escrita.</div>
+                                                <div class="text-[11px]"><strong class="text-indigo-300">C2:</strong> Compreender a proposta e aplicar repertório.</div>
+                                                <div class="text-[11px]"><strong class="text-indigo-300">C3:</strong> Selecionar, organizar e interpretar informações.</div>
+                                                <div class="text-[11px]"><strong class="text-indigo-300">C4:</strong> Conhecimento dos mecanismos linguísticos (coesão).</div>
+                                                <div class="text-[11px]"><strong class="text-indigo-300">C5:</strong> Elaborar proposta de intervenção social.</div>
                                             </div>
                                         </div>
                                     </div>
@@ -386,24 +536,24 @@
                     </main>
 
                     <!-- Floating Actions (Mobile) -->
-                    <div class="fixed bottom-6 right-6 sm:hidden flex flex-col gap-2 z-[60]">
-                        <button onClick=${save} class="w-14 h-14 bg-emerald-600 text-white rounded-full shadow-2xl flex items-center justify-center"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-3m-1 4l-3 3m0 0l-3-3m3 3V4"/></svg></button>
-                        <button onClick=${analyze} class="w-14 h-14 bg-indigo-600 text-white rounded-full shadow-2xl flex items-center justify-center"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg></button>
+                    <div class="fixed bottom-6 right-6 sm:hidden flex flex-col gap-3 z-[60]">
+                        <button onClick=${save} class="w-16 h-16 bg-emerald-600 text-white rounded-full shadow-2xl flex items-center justify-center transform active:scale-90 transition-all border-4 border-white"><svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-3m-1 4l-3 3m0 0l-3-3m3 3V4"/></svg></button>
+                        <button onClick=${analyze} class="w-16 h-16 bg-indigo-600 text-white rounded-full shadow-2xl flex items-center justify-center transform active:scale-90 transition-all border-4 border-white"><svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg></button>
                     </div>
 
                     <!-- Toast -->
                     ${toast && html`
-                        <div class="fixed bottom-10 left-1/2 -translate-x-1/2 z-[70] bg-slate-900 text-white px-8 py-4 rounded-2xl shadow-2xl animate-fade-in font-bold text-sm">
+                        <div class="fixed bottom-10 left-1/2 -translate-x-1/2 z-[70] bg-slate-900 text-white px-8 py-4 rounded-2xl shadow-2xl animate-fade-in font-bold text-xs uppercase tracking-widest">
                             ${toast}
                         </div>
                     `}
 
-                    <!-- Loading -->
+                    <!-- Loading Overlay -->
                     ${isAnalyzing && html`
-                        <div class="fixed inset-0 z-[100] bg-white/80 backdrop-blur-md flex flex-col items-center justify-center">
-                            <div class="w-16 h-16 border-4 border-indigo-600 border-t-transparent rounded-full animate-spin mb-6"></div>
-                            <h2 class="text-xl font-black text-slate-900">Inteligência Artificial Analisando...</h2>
-                            <p class="text-slate-400 text-xs mt-2">Avaliando gramática, coesão e proposta.</p>
+                        <div class="fixed inset-0 z-[100] bg-white/90 backdrop-blur-xl flex flex-col items-center justify-center">
+                            <div class="w-20 h-20 border-8 border-indigo-600 border-t-transparent rounded-full animate-spin mb-8"></div>
+                            <h2 class="text-3xl font-black text-slate-900 tracking-tighter uppercase">Inteligência Artificial</h2>
+                            <p class="text-slate-400 font-bold text-xs mt-3 uppercase tracking-widest animate-pulse">Corrigindo conforme os critérios do MEC...</p>
                         </div>
                     `}
                 </div>
