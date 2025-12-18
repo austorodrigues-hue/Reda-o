@@ -1,0 +1,7 @@
+{
+  "name": "WriteMaster AI - Treinador de Redação",
+  "description": "Uma plataforma completa para treino de redação com cronômetro Pomodoro, editor focado, bloco de notas e feedback inteligente via Gemini AI.",
+  "requestFramePermissions": [
+    "microphone"
+  ]
+}
